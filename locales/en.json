@@ -1,0 +1,8 @@
+{
+	"liveries": "Liveries",
+    "vehicle_liveries": "Vehicle Liveries",
+	"toggle_livery": "Toggle Livery: %s",
+	"no_liveries_found": "No liveries have been found for this vehicle.",
+	"not_in_vehicle": "You are not sitting in a vehicle.",
+	"back_right": "Back right",
+}
