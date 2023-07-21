@@ -1,6 +1,6 @@
 # gjn_vehicleradialmenu
 
-- Simple Vehicle with Radial Menu ([ox_lib](https://github.com/overextended/ox_lib))
+- Simple Vehicle Menu with Radial Menu ([ox_lib](https://github.com/overextended/ox_lib))
 
 - Menu
 
