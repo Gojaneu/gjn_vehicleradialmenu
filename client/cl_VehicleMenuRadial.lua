@@ -78,15 +78,15 @@ lib.registerRadial({
             end
         },
         {
-            label = 'Trunk',
-            icon = 'car-trunk',
+            label = locale("trunk"),
+            icon = 'trunk',
             keepOpen = true,
             onSelect = function()
                 doorToggle(5)
             end
         },
         {
-            label = 'Přední pravé',
+            label = locale("front_right"),
             icon = 'car-side',
             keepOpen = true,
             onSelect = function()
@@ -94,7 +94,7 @@ lib.registerRadial({
             end
         },
         {
-            label = 'Přední levé',
+            label = locale("front_left"),
             icon = 'car-side',
             keepOpen = true,
             onSelect = function()
@@ -102,7 +102,7 @@ lib.registerRadial({
             end
         },
         {
-            label = 'Kapota',
+            label = locale("hood"),
             icon = 'car-hood',
             keepOpen = true,
             onSelect = function()
@@ -110,7 +110,7 @@ lib.registerRadial({
             end
         },
         {
-            label = 'Zadní levé',
+            label = locale("back_left"),
             icon = 'car-side',
             keepOpen = true,
             onSelect = function()
@@ -124,7 +124,7 @@ lib.registerRadial({
     id = 'car_windows',
     items = {
         {
-            label = 'Vzadu vpravo',
+            label = loclale("back_right"),
             icon = 'caret-right',
             keepOpen = true,
             onSelect = function()
@@ -132,7 +132,7 @@ lib.registerRadial({
             end
         },
         {
-            label = 'Spolujezdec',
+            label = locale("co_driver"),
             icon = 'caret-up',
             keepOpen = true,
             onSelect = function()
@@ -140,7 +140,7 @@ lib.registerRadial({
             end
         },
         {
-            label = 'Driver window',
+            label = locale("driver"),
             icon = 'caret-up',
             keepOpen = true,
             onSelect = function()
@@ -148,7 +148,7 @@ lib.registerRadial({
             end
         },
         {
-            label = 'Vzadu vlevo',
+            label = locale("back_left"),
             icon = 'caret-left',
             keepOpen = true,
             onSelect = function()
@@ -162,28 +162,28 @@ lib.registerRadial({
     id = 'car_seats',
     items = {
         {
-            label = 'Vzadu vpravo',
+            label = locale("back_right"),
             icon = 'caret-right',
             onSelect = function()
                 changeSeat(2)
             end
         },
         {
-            label = 'Spolujezdec',
+            label = locale("co_driver"),
             icon = 'caret-up',
             onSelect = function()
                 changeSeat(0)
             end
         },
         {
-            label = 'Řidič',
+            label = locale("driver"),
             icon = 'caret-up',
             onSelect = function()
                 changeSeat(-1)
             end
         },
         {
-            label = 'Vzadu vlevo',
+            label = locale("back_left"),
             icon = 'caret-left',
             onSelect = function()
                 changeSeat(1)
@@ -196,12 +196,12 @@ lib.registerRadial({
     id = 'vehicle_menu',
     items = {
         {
-            label = 'Extras',
+            label = locale("extras"),
             icon = 'note-sticky',
             menu = 'extras'
         },
         {
-            label = 'Liveries',
+            label = locale("liveries"),
             icon = 'note-sticky',
             onSelect = function ()
                 viewLiveries()
@@ -223,17 +223,17 @@ lib.registerRadial({
             end
         },
         {
-            label = 'Doors',
+            label = locale("doors"),
             icon = 'car-side',
             menu = 'car_doors'
         },
         {
-            label = 'Windows',
+            label = locale("windows"),
             icon = 'car-side',
             menu = 'car_windows'
         },
         {
-            label = 'Shuff',
+            label = locale("shuff"),
             icon = 'car-side',
             menu = 'car_seats'
         },
