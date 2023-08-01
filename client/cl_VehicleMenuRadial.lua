@@ -3,66 +3,74 @@ lib.locale()
 local windows = { true, true, true, true }
 
 local function viewLiveries()
-	if not cache.vehicle then
-		return lib.notify({ title = locale('liveries'), description = locale('not_in_vehicle'), type = 'error', position = 'top', icon = 'ban' })
-	end
+    if not cache.vehicle then
+        return lib.notify({ title = locale('liveries'), description = locale('not_in_vehicle'), type = 'error',
+            position = 'top', icon = 'ban' })
+    end
 
-	TriggerEvent('getLiveries')
+    TriggerEvent('getLiveries')
 end
 
 local function formatOption(vehicle, i)
-	return {
-		title = locale('toggle_livery', i + 1),
-		event = 'toggleLivery',
-		args = { vehicle = vehicle, livery = i }
-	}
+    return {
+        title = locale('toggle_livery', i + 1),
+        event = 'toggleLivery',
+        args = { vehicle = vehicle, livery = i }
+    }
 end
 
 AddEventHandler('getLiveries', function()
-	local vehicle = cache.vehicle
-	if not vehicle then
-		return
-	end
+    local vehicle = cache.vehicle
+    if not vehicle then
+        return
+    end
 
-	local numMods = GetNumVehicleMods(vehicle, 48)
-	local numLiveries = GetVehicleLiveryCount(vehicle)
+    local numMods = GetNumVehicleMods(vehicle, 48)
+    local numLiveries = GetVehicleLiveryCount(vehicle)
 
-	SetVehicleModKit(vehicle, 0)
+    SetVehicleModKit(vehicle, 0)
 
-	local options, count = {}, 0
+    local options, count = {}, 0
 
-	if numMods > 0 then
-		for i = 0, numMods -1 do
-			count += 1
-			options[count] = formatOption(vehicle, i)
-		end
-	end
+    if numMods > 0 then
+        for i = 0, numMods - 1 do
+            count += 1
+            options[count] = formatOption(vehicle, i)
+        end
+    end
 
-	if numLiveries > 0 then
-		for i = 0, numLiveries -1 do
-			count += 1
-			options[count] = formatOption(vehicle, i)
-		end
-	end
+    if numLiveries > 0 then
+        for i = 0, numLiveries - 1 do
+            count += 1
+            options[count] = formatOption(vehicle, i)
+        end
+    end
 
-	if count == 0 then
-		return lib.notify({ title = locale('liveries'), description = locale('no_liveries_found'), type = 'error', position = 'top', icon = 'ban' })
-	end
+    if count == 0 then
+        return lib.notify({ title = locale('liveries'), description = locale('no_liveries_found'), type = 'error',
+            position = 'top', icon = 'ban' })
+    end
 
-	lib.registerContext({ id = 'liveries_menu', title = locale('vehicle_liveries'), options = options })
-	lib.showContext('liveries_menu')
+    lib.registerContext(
+        {
+            id = 'liveries_menu',
+            title = locale('vehicle_liveries'),
+            options = options
+        }
+    )
+    lib.showContext('liveries_menu')
 end)
 
 AddEventHandler('toggleLivery', function(data)
-	local vehicle, livery = data?.vehicle, data?.livery
-	if not vehicle or not livery then
-		return
-	end
+    local vehicle, livery = data?.vehicle, data?.livery
+    if not vehicle or not livery then
+        return
+    end
 
-	SetVehicleLivery(vehicle, livery)
-	SetVehicleMod(vehicle, 48, livery)
+    SetVehicleLivery(vehicle, livery)
+    SetVehicleMod(vehicle, 48, livery)
 
-	TriggerEvent('getLiveries')
+    TriggerEvent('getLiveries')
 end)
 
 -- Vehicle Menu
@@ -124,7 +132,7 @@ lib.registerRadial({
     id = 'car_windows',
     items = {
         {
-            label = loclale("back_right"),
+            label = locale("back_right"),
             icon = 'caret-right',
             keepOpen = true,
             onSelect = function()
@@ -203,7 +211,7 @@ lib.registerRadial({
         {
             label = locale("liveries"),
             icon = 'note-sticky',
-            onSelect = function ()
+            onSelect = function()
                 viewLiveries()
             end
         },
@@ -245,7 +253,7 @@ lib.onCache('vehicle', function(value)
         lib.addRadialItem({
             {
                 id = 'vehicle',
-                label = 'Vehicle',
+                label = locale("vehicle_radial_label"),
                 icon = 'car',
                 menu = 'vehicle_menu'
             }
@@ -259,7 +267,7 @@ lib.registerRadial({
     id = 'extras',
     items = {
         {
-            label = 'Extra #1',
+            label = locale("extra").." #1",
             icon = 'note-sticky',
             keepOpen = true,
             onSelect = function()
@@ -276,7 +284,7 @@ lib.registerRadial({
             end
         },
         {
-            label = 'Extra #2',
+            label = locale("extra").." #2",
             icon = 'note-sticky',
             keepOpen = true,
             onSelect = function()
@@ -293,7 +301,7 @@ lib.registerRadial({
             end
         },
         {
-            label = 'Extra #3',
+            label = locale("extra").." #3",
             icon = 'note-sticky',
             keepOpen = true,
             onSelect = function()
@@ -310,7 +318,7 @@ lib.registerRadial({
             end
         },
         {
-            label = 'Extra #4',
+            label = locale("extra").." #4",
             icon = 'note-sticky',
             keepOpen = true,
             onSelect = function()
@@ -327,7 +335,7 @@ lib.registerRadial({
             end
         },
         {
-            label = 'Extra #5',
+            label = locale("extra").." #5",
             icon = 'note-sticky',
             keepOpen = true,
             onSelect = function()
@@ -344,7 +352,7 @@ lib.registerRadial({
             end
         },
         {
-            label = 'Extra #6',
+            label = locale("extra").." #6",
             icon = 'note-sticky',
             keepOpen = true,
             onSelect = function()
@@ -361,7 +369,7 @@ lib.registerRadial({
             end
         },
         {
-            label = 'Extra #7',
+            label = locale("extra").." #7",
             icon = 'note-sticky',
             keepOpen = true,
             onSelect = function()
@@ -378,7 +386,7 @@ lib.registerRadial({
             end
         },
         {
-            label = 'Extra #8',
+            label = locale("extra").." #8",
             icon = 'note-sticky',
             keepOpen = true,
             onSelect = function()
@@ -395,7 +403,7 @@ lib.registerRadial({
             end
         },
         {
-            label = 'Extra #9',
+            label = locale("extra").." #9",
             icon = 'note-sticky',
             keepOpen = true,
             onSelect = function()
@@ -412,7 +420,7 @@ lib.registerRadial({
             end
         },
         {
-            label = 'Extra #10',
+            label = locale("extra").." #10",
             icon = 'note-sticky',
             keepOpen = true,
             onSelect = function()
@@ -429,7 +437,7 @@ lib.registerRadial({
             end
         },
         {
-            label = 'Extra #11',
+            label = locale("extra").." #11",
             icon = 'note-sticky',
             keepOpen = true,
             onSelect = function()
@@ -446,7 +454,7 @@ lib.registerRadial({
             end
         },
         {
-            label = 'Extra #12',
+            label = locale("extra").." #12",
             icon = 'note-sticky',
             keepOpen = true,
             onSelect = function()
@@ -463,7 +471,7 @@ lib.registerRadial({
             end
         },
         {
-            label = 'Extra #13',
+            label = locale("extra").." #13",
             icon = 'note-sticky',
             keepOpen = true,
             onSelect = function()
@@ -482,68 +490,17 @@ lib.registerRadial({
     }
 })
 
-lib.registerRadial({
-    id = 'livery',
-    items = {
-        {
-            label = "kokot",
-            onSelect = function()
-                if cache.vehicle then
-                    local ped = PlayerPedId()
-                    local veh = GetVehiclePedIsIn(ped)
-
-                    if veh ~= nil then
-                        if GetPedInVehicleSeat(veh, -1) == PlayerPedId() then
-                            toggleLivery(veh, 1)
-                        end
-                    end
-                end
-            end
-        },
-        {
-            label = "kokot2",
-            onSelect = function()
-                if cache.vehicle then
-                    local ped = PlayerPedId()
-                    local veh = GetVehiclePedIsIn(ped)
-
-                    if veh ~= nil then
-                        if GetPedInVehicleSeat(veh, -1) == PlayerPedId() then
-                            toggleLivery(veh, 2)
-                        end
-                    end
-                end
-            end
-        },
-        {
-            label = "kokot12",
-            onSelect = function()
-                if cache.vehicle then
-                    local ped = PlayerPedId()
-                    local veh = GetVehiclePedIsIn(ped)
-
-                    if veh ~= nil then
-                        if GetPedInVehicleSeat(veh, -1) == PlayerPedId() then
-                            toggleLivery(veh, 12)
-                        end
-                    end
-                end
-            end
-        },
-    }
-})
-
 function toggleLivery(vehicle, livery)
     local numLiveries = GetVehicleLiveryCount(vehicle)
     local items, count = {}, 0
     if SetVehicleLivery(vehicle, livery) then
         lib.notify({
-            description = 'Dal sis novou livery s číslem ',
+            description = 'Dal sis novou livery s číslem '..livery,
             type = 'success'
         })
         if not SetVehicleLivery(vehicle, livery) then
             lib.notify({
-                description = 'Livery číslo '..livery..' na tomhle autě neexistuje!!!',
+                description = locale("Livery number") .. livery .. locale("not_exist_on_car"),
                 type = 'error'
             })
         end
@@ -559,7 +516,7 @@ function setExtra(vehicle, extra)
             SetVehicleEngineHealth(vehicle, enginehealth)
             SetVehicleBodyHealth(vehicle, bodydamage)
             lib.notify({
-                description = 'Extra: ' .. extra .. ' byly deaktivovány!',
+                description = locale("extra") .. extra .. locale("deactived"),
                 type = 'error'
             })
         else
@@ -569,75 +526,17 @@ function setExtra(vehicle, extra)
             SetVehicleEngineHealth(vehicle, enginehealth)
             SetVehicleBodyHealth(vehicle, bodydamage)
             lib.notify({
-                description = 'Extra: ' .. extra .. ' byly aktivována!',
+                description = locale("extra") .. extra .. locale("actived"),
                 type = 'success'
             })
         end
     else
         lib.notify({
-            description = 'Extra: ' .. extra .. ' nejsou dostupná pro toto vozidlo!',
+            description = locale("extra") .. extra .. locale("not_available_this_vehicle"),
             type = 'error'
         })
     end
 end
-
-RegisterNetEvent('radialmenu:client:setExtra')
-AddEventHandler('radialmenu:client:setExtra', function(data)
-    local string = data.id
-    local replace = string:gsub("extra", "")
-    local extra = tonumber(replace)
-    local ped = PlayerPedId()
-    local veh = GetVehiclePedIsIn(ped)
-    local enginehealth = 1000.0
-    local bodydamage = 1000.0
-
-    if veh ~= nil then
-        local plate = GetVehicleNumberPlateText(closestVehicle)
-
-        if GetPedInVehicleSeat(veh, -1) == PlayerPedId() then
-            if DoesExtraExist(veh, extra) then
-                if IsVehicleExtraTurnedOn(veh, extra) then
-                    enginehealth = GetVehicleEngineHealth(veh)
-                    bodydamage = GetVehicleBodyHealth(veh)
-                    --    SetVehicleAutoRepairDisabled(veh, true)
-                    SetVehicleExtra(veh, extra, 1)
-                    --    SetVehicleAutoRepairDisabled(veh, true)
-                    SetVehicleEngineHealth(veh, enginehealth)
-                    SetVehicleBodyHealth(veh, bodydamage)
-                    ox:notify({
-                        type = 'error',
-                        text = 'Extra: ' .. extra .. ' byly deaktivovány!',
-                        duration = 2500,
-                        position = 'bottom-center'
-                    })
-                else
-                    enginehealth = GetVehicleEngineHealth(veh)
-                    bodydamage = GetVehicleBodyHealth(veh)
-                    --    SetVehicleAutoRepairDisabled(veh, true)
-                    SetVehicleExtra(veh, extra, 0)
-                    --    SetVehicleAutoRepairDisabled(veh, true)
-                    SetVehicleEngineHealth(veh, enginehealth)
-                    SetVehicleBodyHealth(veh, bodydamage)
-                    ox:notify({
-                        type = 'success',
-                        text = 'Extra: ' .. extra .. ' byly aktivována!',
-                        duration = 2500,
-                        position = 'bottom-center'
-                    })
-                end
-            else
-                ox:notify({
-                    type = 'error',
-                    text = 'Extra: ' .. extra .. ' nejsou dostupná pro toto vozidlo!',
-                    duration = 2500,
-                    position = 'bottom-center'
-                })
-            end
-        else
-            ox:notify({ type = 'error', text = 'Nejsi řidič vozu!', duration = 2500, position = 'bottom-center' })
-        end
-    end
-end)
 
 function doorToggle(door)
     if GetVehicleDoorAngleRatio(cache.vehicle, door) > 0.0 then

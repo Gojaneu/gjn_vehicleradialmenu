@@ -2,7 +2,7 @@ fx_version 'cerulean'
 game 'gta5'
 
 author 'GF Scripts'
-version '1.0.0'
+version '1.1.0'
 
 lua54 'yes'
 

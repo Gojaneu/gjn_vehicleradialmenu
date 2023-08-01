@@ -1,1 +1,1 @@
-Conifg = {}
+Config = {}
