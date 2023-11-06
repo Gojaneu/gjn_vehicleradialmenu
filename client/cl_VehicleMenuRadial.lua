@@ -136,7 +136,7 @@ lib.registerRadial({
             icon = 'caret-right',
             keepOpen = true,
             onSelect = function()
-                windowToggle(2, 3)
+                windowToggle(3, 2)
             end
         },
         {
@@ -160,7 +160,7 @@ lib.registerRadial({
             icon = 'caret-left',
             keepOpen = true,
             onSelect = function()
-                windowToggle(3, 2)
+                windowToggle(2, 3)
             end
         },
     }
